@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>get/post</title>
+</head>
+
+<body>
+    <input type="text" id="txt">
+    <input type="text" id="pass">
+    <input type="button" id="btn">
+</body>
+<script>
+    function getAjax(url, data) {
+        data = data || {};
+        var str = "";
+        var xhr = new XMLHttpRequest();
+        for (var i in data) {
+            str += `${i}=${data[i]}&`;
+        }
+        url = url + "?" + str + "__retr0__=" + new Date().getTime();
+        xhr.open("get", url, true);
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === 4 && xhr.status === 200) {
+                console.log(xhr.responseText);
+            }
+        }
+        xhr.send();
+    }
+
+    function postAjax(url, data) {
+        data = data || {};
+        var str = "";
+        var xhr = new XMLHttpRequest();
+        for (var i in data) {
+            str += `${i}=${data[i]}&`;
+        }
+        xhr.open("post", url, true);
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === 4 && xhr.status === 200) {
+                console.log(xhr.responseText);
+            }
+        }
+        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        xhr.send(str);
+    }
+    var txt = document.querySelector("#txt");
+    var pass = document.querySelector("#pass");
+    var btn = document.querySelector("#btn");
+    btn.onclick = function () {
+        postAjax("http://127.0.0.2:8888/api", {
+            user: txt.value,
+            pass: pass.value
+        })
+    }
+</script>
+
+</html>
