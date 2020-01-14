@@ -11,7 +11,7 @@
 ### 实现方法
 
 1. 前端getajax的网址为：http://127.0.0.2/api（首先后端确定下来一个pathname用于捕捉ajax）
-2. 利用url.parse().pathname判断pathname是否为"api"(或其他确定好的`暗号`)
+2. 利用url.parse(req.url).pathname判断pathname是否为"api"(或其他确定好的`暗号`)
 3. url.parse(req.url,true)，第二个参数true可以把url.parse(req.url)返回的对象身上的query属性的值变成一个对象，便于我们操作
 4. 通过res.write向前端返回数据
 5. res.end()结束请求
