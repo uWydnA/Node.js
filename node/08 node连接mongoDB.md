@@ -260,3 +260,83 @@ uesr.updateMany({sex:false},{$inc:{age:-1}},(err)=>{
 
 
 
+### model.deleteOne()
+
+删除单个
+
+```js
+model.deleteOne({key:val},(err)=>{
+    console.log(err?err:"delete ok")
+})
+```
+
+
+
+### model.deleteMany()
+
+删除多个
+
+```js
+model.deleteMany({key:val},(err)=>{
+    console.log(err?err:"delete ok");
+})
+```
+
+
+
+删除全部
+
+```js
+model.deleteMany({},(err)=>{
+    console.log(err?err:"delete all");
+})
+```
+
+
+
+### model.findOne()
+
+查找单个
+
+```js
+model.findOne({user:"admin"},{_id:0,pass:1},(err,data)=>{
+	if(err){
+        console.log(err);
+    }else{
+        if(data.length != undefined){
+            data.forEach((val)=>{
+                console.log(val)
+            })
+        }else{
+            console.log(data)
+        }
+    }
+})
+```
+
+
+
+### model.find()
+
+可以多条，取决于条件
+
+```js
+const coll = require("./collection");
+coll.find({
+
+}, {
+    _id: 0,
+    age: 1,
+    goRead: 1,
+    id: 1
+}, (err, data) => {
+    if (data.length != undefined) {
+        data.forEach((val) => {
+            console.log(val._doc);
+        })
+    } else {
+        console.log(data);
+    }
+})
+```
+
